@@ -1,0 +1,4 @@
+*.jar
+*.db
+.minio.sys/
+.env
