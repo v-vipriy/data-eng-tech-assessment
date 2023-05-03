@@ -2,3 +2,4 @@
 *.db
 .minio.sys/
 .env
+streets-data/
