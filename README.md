@@ -1,8 +1,9 @@
 ## Task
 
-This is a timeboxed task that requires you to develop a set of datapipelines / tasks that:
+This is a timeboxed task that requires you to develop a set of datapipelines / tasks that process pedestrian data form the city of melbourne.
+This task will require you to:
 
-1. Loads an external street data file and then sends into a kafka topic
+1. Load an external street data file and then send into a kafka topic
 2. Read from the topic and enrich the message with the true location names
 3. Finally load the enriched data then loads into the 
 4. Have at least one unit test
@@ -34,8 +35,8 @@ Check the compose file for the ports
 ### Solutions, assumtions and design choices
 
 ### Task files
-1. Melbourne pedestrian data
-2. Location data
+1. Melbourne pedestrian data - newer version or different format can be downloaded [Here](https://discover.data.vic.gov.au/dataset/pedestrian-counting-system-monthly-counts-per-hour)
+2. Location data - newer version or different format can be downloaded [Here](https://discover.data.vic.gov.au/dataset/pedestrian-counting-system-sensor-locations)
 
 ## Setup
 
