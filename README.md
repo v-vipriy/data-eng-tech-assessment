@@ -40,15 +40,13 @@ Now you should have a workable stack to develop against.
 
 ### Nexts steps
 
-- You will need to define and create the schema and tables, see example in the cli folder
+- You will need to define and create the schema and tables, see example in the cli folder. This can be run by uncommenting the 'run-once' container trino-bootstrap3 i nthe docker-compose file
 - You will need to create additional topics (the default could get used), they can be added in the "KAFKA_CREATE_TOPICS" variable for the kafka container
 - You can upload and run your jar(s) to the flink master running [Here](http://localhost:8083)
 
 ### Submission
 
 Once you have completed you solution share the github repo with your HR contact with instructions on how to build your jars, do not share prebuilt jar files.
-
-### Solutions, assumtions and design choices
 
 ### Task files
 1. Melbourne pedestrian data - newer version or different format can be downloaded [Here](https://discover.data.vic.gov.au/dataset/pedestrian-counting-system-monthly-counts-per-hour)
