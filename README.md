@@ -38,9 +38,9 @@ docker-compose up -d --force-recreate --remove-orphans
 
 Now you should have a workable stack to develop against. 
 
-### Nexts steps
+### Next steps
 
-- You will need to define and create the schema and tables, see example in the cli folder. This can be run by uncommenting the 'run-once' container trino-bootstrap3 i nthe docker-compose file
+- You will need to define and create the schema and tables, see example in the cli folder. This can be run by uncommenting the 'run-once' container trino-bootstrap3 in the docker-compose file
 - You will need to create additional topics (the default could get used), they can be added in the "KAFKA_CREATE_TOPICS" variable for the kafka container
 - You can upload and run your jar(s) to the flink master running [Here](http://localhost:8083)
 
