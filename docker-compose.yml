@@ -128,18 +128,6 @@ services:
 
 ## BEAM
 
-  beam:
-    image: apache/beam_java11_sdk:latest
-    ports:
-      - "8081:8081"
-    # environment:
-    #   GOOGLE_APPLICATION_CREDENTIALS: /secrets/service-account.json
-    volumes:
-      #- ./secrets:/secrets
-      - ./data:/data
-    command: >
-      sh -c "mvn compile exec:java -Dexec.mainClass=com.example.BeamPipeline -Pdirect-runner"
-
   flink-master:
     image: bde2020/flink-master:1.14.5-hadoop3.2
     hostname: flink-master

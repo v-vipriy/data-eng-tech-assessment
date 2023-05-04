@@ -3,13 +3,11 @@
 This is a timeboxed task that requires you to develop a set of datapipelines / tasks that process pedestrian data form the city of melbourne.
 This task will require you to:
 
-1. Load an external street data file and then send into a kafka topic
-2. Read from the topic and enrich the message with the true location names
-3. Finally load the enriched data then loads into the 
+1. Load an external street data file and then send into a kafka topic (from the pedestrian-counting-system-monthly-counts-per-hour.json)
+2. Read from the topic and enrich the message with the true location names (from the pedestrian-counting-system-sensor-locations.json file)
+3. Finally write the enriched data into the iceberg database
 4. Have at least one unit test
-
-Use the provided docker-compose file to get you started, this will spin up the required services.
-Check the compose file for the ports
+5. Instructions on how to build you pipelines
 
 ### Further information
 
@@ -18,19 +16,37 @@ Check the compose file for the ports
 - The current database is iceberg, in this case backed onto minio and presented via trino with a metastore catalog
 - The data pipeline framework is apache beam, a flink server and worker are a park of the docker-compose
 - There is a metabase container, this is optional to try and visualise data
+- Don't over engineer, keep to the brief (there's plenty of room within that)
 
 ### Getting started
 
 - Fork this repo as a starting point
 - unzip the pedestrian.zip file in source-data
 - Setup docker - see instructions below
+- Copy or rename the .env.example to .env and populate the values for the containers
+- Edit the conf files with your databases and credentials 
+```
+conf/metastore/metastore-site.xml
+conf/trino/catalog/hive.properties
+conf/trino/catalog/iceberg.properties
+```
+- Run docker-compose
+```
+docker-compose up -d --force-recreate --remove-orphans
+```
+- Next access the [minio console](http://localhost:9090) and create a new bucket called "streets-data". You can also use the minio cli (mc) if preffered
+
+Now you should have a workable stack to develop against. 
+
+### Nexts steps
+
 - You will need to define and create the schema and tables, see example in the cli folder
 - You will need to create additional topics (the default could get used), they can be added in the "KAFKA_CREATE_TOPICS" variable for the kafka container
-- Copy or rename the .env.example to .env and populate the values for the containers
-- Run the docker-compose file to spin up the containers (see below on how to startup)
-- Use the minio cli to create the minio bucket, the create-assets.sh has an example of installing the mc tool and creating the bucket or you can create via the minio console
-- You can upload and run your jar to the flink master
-- When submitting, share the github/gitlab project
+- You can upload and run your jar(s) to the flink master running [Here](http://localhost:8083)
+
+### Submission
+
+Once you have completed you solution share the github repo with your HR contact with instructions on how to build your jars, do not share prebuilt jar files.
 
 ### Solutions, assumtions and design choices
 
@@ -62,9 +78,10 @@ Check the compose file for the ports
 
 #### Windows, Mac, and Linux:
 
-1. Go to [Docker Compose](https://docs.docker.com/compose/install/) and follow the instructions to install Docker Compose for your operating system.
+Docker compose is bundled with the most recent versions of docker-desktop. If you use docker-machine or something other solution, you will need to use you OS package manager to install
 
 ### Podman
+Alternative to docker.
 
 #### Linux:
 
@@ -90,17 +107,3 @@ Check the compose file for the ports
 #### Mac and Windows:
 
 1. Install Podman Compose using pip. Run `pip install podman-compose` in a terminal window.
-
-### CLI tools required
-
-### Containers
-
-To spin up the containers run below:
-```
-docker-compose up -d --force-recreate --remove-orphans
-```
-
-To stop run:
-```
-docker-compose down
-```
